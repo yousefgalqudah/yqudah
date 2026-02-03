@@ -11,20 +11,24 @@
   <header class="topbar">
     <a class="brand" href="index.html">yqudah<span>.dev</span></a>
 
-    <nav class="nav">
+    <button class="btn ghost menuBtn" id="menuBtn" type="button" aria-label="Toggle menu">
+      Menu
+    </button>
+
+    <nav class="nav" id="nav">
       <a href="index.html">Home</a>
       <a class="active" href="articles.html">Articles</a>
       <a href="snippets.html">Snippets</a>
       <a href="courses.html">Courses</a>
     </nav>
 
-    <button class="btn ghost" id="themeBtn" type="button">Theme</button>
+    <button class="btn ghost" id="themeBtn" type="button" aria-label="Toggle theme">Theme</button>
   </header>
 
   <main class="container">
     <section class="pageHead">
       <h1>Articles</h1>
-      <p class="muted">Short, practical writeups. Paragraph-first, code where needed.</p>
+      <p class="muted">Short writeups. Paragraph-first, code only when needed.</p>
       <input class="search" id="search" placeholder="Search articles…" />
     </section>
 
@@ -33,28 +37,27 @@
         <div class="kicker">Security • Pwn</div>
         <h2 class="h2">Buffer overflows: quick mental model</h2>
         <p>
-          Think of the stack as a sequence of bytes that grows and shrinks as functions call each other.
-          Local buffers sit next to saved state (like saved base pointer and the return address).
+          The stack is just bytes. Functions place local buffers on the stack next to saved state (saved base pointer and the return address).
         </p>
         <p>
-          If an input function writes more bytes than the buffer can hold, the extra bytes overwrite whatever is next.
-          The classic target is the saved return address: overwrite it, and control the next instruction pointer.
+          If input writes more than the buffer can hold, it overwrites whatever comes next. Classic target: the saved return address (RIP).
+          If you overwrite it, you control where the program returns.
         </p>
         <p class="muted small">
-          Tip: If you can control RIP but gadgets are limited, add one extra <code>ret</code> for stack alignment on x86_64.
+          Tip: On x86_64, sometimes insert one extra <code>ret</code> to fix stack alignment.
         </p>
       </article>
 
-      <article class="post card" id="post-dds-notes" data-title="dds ros2 quick notes pub sub reliability qos">
+      <article class="post card" id="post-dds-notes" data-title="dds ros2 qos reliability best effort history depth">
         <div class="kicker">Robotics • Notes</div>
         <h2 class="h2">DDS in ROS 2: what matters</h2>
         <p>
-          DDS is the middleware layer used by ROS 2 to move messages between nodes.
-          You usually care about QoS: reliability, durability, history depth, and deadlines.
+          DDS is the middleware that moves messages between nodes. Most issues come down to QoS:
+          reliability, history depth, and whether messages should be kept for late joiners.
         </p>
         <p>
-          When networking is flaky, reliable + small queues can stall. For high-rate sensor streams, best-effort can be smoother.
-          Tune QoS per topic, not globally.
+          For high-rate sensor streams, best-effort often avoids stalls. For critical commands, reliable makes sense.
+          Tune QoS per topic.
         </p>
       </article>
     </section>
@@ -66,7 +69,6 @@
 
   <script src="app.js"></script>
   <script>
-    // page-specific: filter articles by search
     const q = document.getElementById("search");
     const posts = [...document.querySelectorAll(".post")];
     q.addEventListener("input", () => {

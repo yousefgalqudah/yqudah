@@ -1,23 +1,16 @@
-// year
+// Year
 document.querySelectorAll("#year").forEach(el => {
   el.textContent = new Date().getFullYear();
 });
 
-// back to top
-const back = document.getElementById("backToTop");
-if (back) back.addEventListener("click", (e) => {
-  e.preventDefault();
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
-
-// theme toggle (stored)
+// Theme toggle (stored)
 const root = document.documentElement;
-const btn = document.getElementById("themeBtn");
+const themeBtn = document.getElementById("themeBtn");
 const saved = localStorage.getItem("theme");
 if (saved) root.dataset.theme = saved;
 
-if (btn) {
-  btn.addEventListener("click", () => {
+if (themeBtn) {
+  themeBtn.addEventListener("click", () => {
     const next = root.dataset.theme === "light" ? "" : "light";
     if (next) root.dataset.theme = next;
     else delete root.dataset.theme;
@@ -25,7 +18,21 @@ if (btn) {
   });
 }
 
-// copy buttons for code snippets
+// Mobile menu toggle
+const menuBtn = document.getElementById("menuBtn");
+const nav = document.getElementById("nav");
+if (menuBtn && nav) {
+  menuBtn.addEventListener("click", () => {
+    nav.classList.toggle("open");
+  });
+
+  // Close menu when a link is clicked (mobile)
+  nav.querySelectorAll("a").forEach(a => {
+    a.addEventListener("click", () => nav.classList.remove("open"));
+  });
+}
+
+// Copy buttons for code snippets
 document.querySelectorAll(".copyBtn").forEach((b) => {
   b.addEventListener("click", async () => {
     const id = b.getAttribute("data-copy-target");
@@ -39,7 +46,6 @@ document.querySelectorAll(".copyBtn").forEach((b) => {
       b.textContent = "Copied";
       setTimeout(() => (b.textContent = old), 900);
     } catch {
-      // fallback
       const ta = document.createElement("textarea");
       ta.value = text;
       document.body.appendChild(ta);

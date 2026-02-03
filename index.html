@@ -11,7 +11,11 @@
   <header class="topbar">
     <a class="brand" href="index.html">yqudah<span>.dev</span></a>
 
-    <nav class="nav">
+    <button class="btn ghost menuBtn" id="menuBtn" type="button" aria-label="Toggle menu">
+      Menu
+    </button>
+
+    <nav class="nav" id="nav">
       <a class="active" href="index.html">Home</a>
       <a href="articles.html">Articles</a>
       <a href="snippets.html">Snippets</a>
@@ -23,71 +27,40 @@
 
   <main class="container">
     <section class="hero">
-      <div>
-        <h1>Notes, snippets, and course material.</h1>
-        <p class="muted">
-          Simple, fast, and readable. Static site. No tracking. No fluff.
-        </p>
-        <div class="row">
-          <a class="btn" href="articles.html">Read articles</a>
-          <a class="btn ghost" href="snippets.html">Browse snippets</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="kicker">Quick links</div>
-        <div class="stack">
-          <a class="item" href="articles.html">
-            <div>
-              <div class="itemTitle">Articles</div>
-              <div class="muted small">Paragraph-style writeups</div>
-            </div>
-            <div class="arrow">→</div>
-          </a>
-
-          <a class="item" href="snippets.html">
-            <div>
-              <div class="itemTitle">Snippets</div>
-              <div class="muted small">Copy-ready code blocks</div>
-            </div>
-            <div class="arrow">→</div>
-          </a>
-
-          <a class="item" href="courses.html">
-            <div>
-              <div class="itemTitle">Courses</div>
-              <div class="muted small">Organized material (no videos)</div>
-            </div>
-            <div class="arrow">→</div>
-          </a>
-        </div>
+      <h1>Notes, snippets, and course material.</h1>
+      <p class="muted">
+        Simple static site. Fast. Clean. Works on every screen size.
+      </p>
+      <div class="row">
+        <a class="btn" href="articles.html">Read articles</a>
+        <a class="btn ghost" href="snippets.html">Browse snippets</a>
       </div>
     </section>
 
     <section class="grid">
       <article class="card">
         <div class="kicker">Latest article</div>
-        <h2 class="h3">Buffer overflows: quick mental model</h2>
+        <h2 class="h2">Buffer overflows: quick mental model</h2>
         <p class="muted">
-          A short explanation of stack layout, saved RIP, and why off-by-one bugs matter.
+          Stack layout, saved RIP, and why off-by-one bugs matter.
         </p>
         <a class="btn ghost" href="articles.html#post-bo-model">Open</a>
       </article>
 
       <article class="card">
         <div class="kicker">Featured snippet</div>
-        <h2 class="h3">pwntools template</h2>
+        <h2 class="h2">pwntools template</h2>
         <p class="muted">
-          A minimal script scaffold for remote/local debugging.
+          Minimal scaffold for local/remote debugging.
         </p>
         <a class="btn ghost" href="snippets.html#snip-pwntools">Open</a>
       </article>
 
       <article class="card">
-        <div class="kicker">Course material</div>
-        <h2 class="h3">OS: Scheduling summary</h2>
+        <div class="kicker">Course notes</div>
+        <h2 class="h2">OS: CPU scheduling</h2>
         <p class="muted">
-          FCFS vs SJF vs RR — concise notes and formulas.
+          FCFS vs SJF vs RR — short notes and reminders.
         </p>
         <a class="btn ghost" href="courses.html#os-scheduling">Open</a>
       </article>
@@ -95,9 +68,6 @@
 
     <footer class="footer">
       <div class="muted small">© <span id="year"></span> yqudah.dev</div>
-      <div class="muted small">
-        <a href="#" class="link" id="backToTop">Back to top</a>
-      </div>
     </footer>
   </main>
 
