@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Articles • yqudah.dev</title>
+  <meta name="description" content="Articles and writeups." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">yqudah<span>.dev</span></a>
+
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a class="active" href="articles.html">Articles</a>
+      <a href="snippets.html">Snippets</a>
+      <a href="courses.html">Courses</a>
+    </nav>
+
+    <button class="btn ghost" id="themeBtn" type="button">Theme</button>
+  </header>
+
+  <main class="container">
+    <section class="pageHead">
+      <h1>Articles</h1>
+      <p class="muted">Short, practical writeups. Paragraph-first, code where needed.</p>
+      <input class="search" id="search" placeholder="Search articles…" />
+    </section>
+
+    <section class="stack" id="list">
+      <article class="post card" id="post-bo-model" data-title="buffer overflows quick mental model stack saved rip">
+        <div class="kicker">Security • Pwn</div>
+        <h2 class="h2">Buffer overflows: quick mental model</h2>
+        <p>
+          Think of the stack as a sequence of bytes that grows and shrinks as functions call each other.
+          Local buffers sit next to saved state (like saved base pointer and the return address).
+        </p>
+        <p>
+          If an input function writes more bytes than the buffer can hold, the extra bytes overwrite whatever is next.
+          The classic target is the saved return address: overwrite it, and control the next instruction pointer.
+        </p>
+        <p class="muted small">
+          Tip: If you can control RIP but gadgets are limited, add one extra <code>ret</code> for stack alignment on x86_64.
+        </p>
+      </article>
+
+      <article class="post card" id="post-dds-notes" data-title="dds ros2 quick notes pub sub reliability qos">
+        <div class="kicker">Robotics • Notes</div>
+        <h2 class="h2">DDS in ROS 2: what matters</h2>
+        <p>
+          DDS is the middleware layer used by ROS 2 to move messages between nodes.
+          You usually care about QoS: reliability, durability, history depth, and deadlines.
+        </p>
+        <p>
+          When networking is flaky, reliable + small queues can stall. For high-rate sensor streams, best-effort can be smoother.
+          Tune QoS per topic, not globally.
+        </p>
+      </article>
+    </section>
+
+    <footer class="footer">
+      <div class="muted small">© <span id="year"></span> yqudah.dev</div>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+  <script>
+    // page-specific: filter articles by search
+    const q = document.getElementById("search");
+    const posts = [...document.querySelectorAll(".post")];
+    q.addEventListener("input", () => {
+      const term = q.value.trim().toLowerCase();
+      posts.forEach(p => {
+        const hay = (p.dataset.title || "").toLowerCase();
+        p.style.display = hay.includes(term) ? "" : "none";
+      });
+    });
+  </script>
+</body>
+</html>
+

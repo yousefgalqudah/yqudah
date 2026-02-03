@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Courses • yqudah.dev</title>
+  <meta name="description" content="Course notes and material (no videos)." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">yqudah<span>.dev</span></a>
+
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="articles.html">Articles</a>
+      <a href="snippets.html">Snippets</a>
+      <a class="active" href="courses.html">Courses</a>
+    </nav>
+
+    <button class="btn ghost" id="themeBtn" type="button">Theme</button>
+  </header>
+
+  <main class="container">
+    <section class="pageHead">
+      <h1>Courses</h1>
+      <p class="muted">Structured notes, PDFs, and links. No videos for now.</p>
+    </section>
+
+    <section class="grid">
+      <article class="card" id="os-scheduling">
+        <div class="kicker">Operating Systems</div>
+        <h2 class="h3">CPU Scheduling</h2>
+        <ul class="bullets">
+          <li>FCFS, SJF, Round Robin</li>
+          <li>Waiting time / turnaround time basics</li>
+          <li>Common pitfalls and examples</li>
+        </ul>
+        <div class="row">
+          <a class="btn ghost" href="articles.html">Related writeups</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="kicker">Security</div>
+        <h2 class="h3">Binary Exploitation</h2>
+        <ul class="bullets">
+          <li>Memory layout, stack frames</li>
+          <li>ROP, ret2libc, format strings</li>
+          <li>Checksec + mitigation overview</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <div class="kicker">Robotics</div>
+        <h2 class="h3">ROS 2 / DDS</h2>
+        <ul class="bullets">
+          <li>Nodes, topics, QoS</li>
+          <li>Network tuning basics</li>
+          <li>Deployment notes</li>
+        </ul>
+      </article>
+    </section>
+
+    <footer class="footer">
+      <div class="muted small">© <span id="year"></span> yqudah.dev</div>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
